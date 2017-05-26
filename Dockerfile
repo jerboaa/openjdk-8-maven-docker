@@ -35,7 +35,11 @@ RUN yum install -y centos-release-scl-rh && \
     yum-config-manager --enable centos-sclo-rh-testing && \
     INSTALL_PKGS="rh-maven33 nss_wrapper git" && \
     yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus $INSTALL_PKGS && \
+    yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus java-1.8.0-openjdk.i686 java-1.8.0-openjdk-devel.i686 && \
     rpm -V $INSTALL_PKGS && \
+    rpm -e java-1.8.0-openjdk.x86_64 --nodeps && \
+    rpm -e java-1.8.0-openjdk-devel.x86_64 --nodeps && \
+    rpm -e java-1.8.0-openjdk-headless.x86_64 --nodeps && \
     yum clean all -y
 
 USER 1001

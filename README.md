@@ -2,9 +2,9 @@
 
 ## Build with Docker
 
-    $ sudo docker build -t openjdk-8-64bit-maven .
+    $ sudo docker build -t openjdk-8-32bit-maven .
 
 ## Build on OpenShift
 
-    $ oc new-build --name openjdk-8-64bit-maven https://github.com/jerboaa/openjdk-8-maven-docker
+    $ oc new-build --name openjdk-8-32bit-maven https://github.com/jerboaa/openjdk-8-maven-docker#32-bit
 
