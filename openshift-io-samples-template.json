@@ -1,0 +1,1539 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "openshift-io-samples"
+    },
+    "objects": [
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${OPENJDK8_32}",
+                "labels": {
+                    "build": "${OPENJDK8_32}"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/openjdk-8-maven-docker",
+                        "ref": "32-bit"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "s2i-base-centos7:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${OPENJDK8_32}:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${OPENJDK8_64}",
+                "labels": {
+                    "build": "${OPENJDK8_64}"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/openjdk-8-maven-docker"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "s2i-base-centos7:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${OPENJDK8_64}:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-32",
+                "labels": {
+                    "app": "spring-boot-http-booster-32"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/spring-boot-http-booster"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${OPENJDK8_32}:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "spring-boot-http-booster-32:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-64",
+                "labels": {
+                    "app": "spring-boot-http-booster-64"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/spring-boot-http-booster"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${OPENJDK8_64}:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "spring-boot-http-booster-64:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-32",
+                "labels": {
+                    "app": "vertx-http-booster-32"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/vertx-http-booster"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${OPENJDK8_32}:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "vertx-http-booster-32:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-64",
+                "labels": {
+                    "app": "vertx-http-booster-64"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/vertx-http-booster"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${OPENJDK8_64}:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "vertx-http-booster-64:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-32",
+                "labels": {
+                    "app": "wfswarm-rest-http-32"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/wfswarm-rest-http"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${OPENJDK8_32}:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "wfswarm-rest-http-32:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-64",
+                "labels": {
+                    "app": "wfswarm-rest-http-64"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "runPolicy": "Serial",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/wfswarm-rest-http"
+                    }
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "${OPENJDK8_64}:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "wfswarm-rest-http-64:latest"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "Build",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${OPENJDK8_32}-1",
+                "labels": {
+                    "build": "${OPENJDK8_32}",
+                    "buildconfig": "${OPENJDK8_32}",
+                    "openshift.io/build-config.name": "${OPENJDK8_32}",
+                    "openshift.io/build.start-policy": "Serial"
+                },
+                "annotations": {
+                    "openshift.io/build-config.name": "${OPENJDK8_32}",
+                    "openshift.io/build.number": "1",
+                    "openshift.io/build.pod-name": "${OPENJDK8_32}-1-build"
+                }
+            },
+            "spec": {
+                "serviceAccount": "builder",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/openjdk-8-maven-docker",
+                        "ref": "32-bit"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker"
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${OPENJDK8_32}:latest"
+                    },
+                    "pushSecret": {
+                        "name": "${SECRET}"
+                    }
+                },
+                "resources": {},
+                "postCommit": {},
+                "triggeredBy": [
+                    {
+                        "message": "Initial OpenJDK 8 32 bit build"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "Build",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${OPENJDK8_64}-1",
+                "labels": {
+                    "build": "${OPENJDK8_64}",
+                    "buildconfig": "${OPENJDK8_64}",
+                    "openshift.io/build-config.name": "${OPENJDK8_64}",
+                    "openshift.io/build.start-policy": "Serial"
+                },
+                "annotations": {
+                    "openshift.io/build-config.name": "${OPENJDK8_64}",
+                    "openshift.io/build.number": "1",
+                    "openshift.io/build.pod-name": "${OPENJDK8_64}-1-build"
+                }
+            },
+            "spec": {
+                "serviceAccount": "builder",
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/jerboaa/openjdk-8-maven-docker"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker"
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${OPENJDK8_64}:latest"
+                    },
+                    "pushSecret": {
+                        "name": "${SECRET}"
+                    }
+                },
+                "resources": {},
+                "postCommit": {},
+                "triggeredBy": [
+                    {
+                        "message": "Initial OpenJDK 8 64 bit build"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${OPENJDK8_32}",
+                "generation": 1,
+                "labels": {
+                    "build": "${OPENJDK8_32}"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "${OPENJDK8_32}:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${OPENJDK8_64}",
+                "generation": 1,
+                "labels": {
+                    "build": "${OPENJDK8_64}"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "${OPENJDK8_64}:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-32",
+                "generation": 1,
+                "labels": {
+                    "app": "spring-boot-http-booster-32"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "spring-boot-http-booster-32:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-64",
+                "generation": 1,
+                "labels": {
+                    "app": "spring-boot-http-booster-64"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "spring-boot-http-booster-64:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-32",
+                "generation": 1,
+                "labels": {
+                    "app": "vertx-http-booster-32"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "vertx-http-booster-32:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-64",
+                "generation": 1,
+                "labels": {
+                    "app": "vertx-http-booster-64"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "vertx-http-booster-64:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-32",
+                "generation": 1,
+                "labels": {
+                    "app": "wfswarm-rest-http-32"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "wfswarm-rest-http-32:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-64",
+                "generation": 1,
+                "labels": {
+                    "app": "wfswarm-rest-http-64"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "wfswarm-rest-http-64:latest"
+                        },
+                        "importPolicy": {},
+                        "referencePolicy": {
+                            "type": ""
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-32",
+                "generation": 1,
+                "labels": {
+                    "app": "spring-boot-http-booster-32"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "spring-boot-http-booster-32"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "spring-boot-http-booster-32:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "spring-boot-http-booster-32",
+                    "deploymentconfig": "spring-boot-http-booster-32"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "spring-boot-http-booster-32",
+                            "deploymentconfig": "spring-boot-http-booster-32"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "spring-boot-http-booster-32",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "JAVA_TOOL_OPTIONS",
+                                        "value": "${JAVA_TOOL_OPTIONS}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                    },
+                                    "requests": {
+                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                    }
+                                },
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-64",
+                "generation": 1,
+                "labels": {
+                    "app": "spring-boot-http-booster-64"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "spring-boot-http-booster-64"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "spring-boot-http-booster-64:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "spring-boot-http-booster-64",
+                    "deploymentconfig": "spring-boot-http-booster-64"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "spring-boot-http-booster-64",
+                            "deploymentconfig": "spring-boot-http-booster-64"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "spring-boot-http-booster-64",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "JAVA_TOOL_OPTIONS",
+                                        "value": "${JAVA_TOOL_OPTIONS}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                    },
+                                    "requests": {
+                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                    }
+                                },
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-32",
+                "generation": 1,
+                "labels": {
+                    "app": "vertx-http-booster-32"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "vertx-http-booster-32"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "vertx-http-booster-32:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "vertx-http-booster-32",
+                    "deploymentconfig": "vertx-http-booster-32"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "vertx-http-booster-32",
+                            "deploymentconfig": "vertx-http-booster-32"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "vertx-http-booster-32",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "JAVA_TOOL_OPTIONS",
+                                        "value": "${JAVA_TOOL_OPTIONS}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                    },
+                                    "requests": {
+                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                    }
+                                },
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-64",
+                "generation": 1,
+                "labels": {
+                    "app": "vertx-http-booster-64"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "vertx-http-booster-64"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "vertx-http-booster-64:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "vertx-http-booster-64",
+                    "deploymentconfig": "vertx-http-booster-64"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "vertx-http-booster-64",
+                            "deploymentconfig": "vertx-http-booster-64"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "vertx-http-booster-64",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "JAVA_TOOL_OPTIONS",
+                                        "value": "${JAVA_TOOL_OPTIONS}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                    },
+                                    "requests": {
+                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                    }
+                                },
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-32",
+                "generation": 1,
+                "labels": {
+                    "app": "wfswarm-rest-http-32"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "wfswarm-rest-http-32"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "wfswarm-rest-http-32:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "wfswarm-rest-http-32",
+                    "deploymentconfig": "wfswarm-rest-http-32"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "wfswarm-rest-http-32",
+                            "deploymentconfig": "wfswarm-rest-http-32"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "wfswarm-rest-http-32",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "JAVA_TOOL_OPTIONS",
+                                        "value": "${JAVA_TOOL_OPTIONS}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                    },
+                                    "requests": {
+                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                    }
+                                },
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-64",
+                "generation": 1,
+                "labels": {
+                    "app": "wfswarm-rest-http-64"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "wfswarm-rest-http-64"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "wfswarm-rest-http-64:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "wfswarm-rest-http-64",
+                    "deploymentconfig": "wfswarm-rest-http-64"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "wfswarm-rest-http-64",
+                            "deploymentconfig": "wfswarm-rest-http-64"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "wfswarm-rest-http-64",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "JAVA_TOOL_OPTIONS",
+                                        "value": "${JAVA_TOOL_OPTIONS}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                    },
+                                    "requests": {
+                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {
+                "latestVersion": 0,
+                "observedGeneration": 0,
+                "replicas": 0,
+                "updatedReplicas": 0,
+                "availableReplicas": 0,
+                "unavailableReplicas": 0
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-32",
+                "annotations": {
+                    "openshift.io/host.generated": "true"
+                }
+            },
+            "spec": {
+                "host": "",
+                "to": {
+                    "kind": "Service",
+                    "name": "spring-boot-http-booster-32",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "wildcardPolicy": "None"
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-64",
+                "annotations": {
+                    "openshift.io/host.generated": "true"
+                }
+            },
+            "spec": {
+                "host": "",
+                "to": {
+                    "kind": "Service",
+                    "name": "spring-boot-http-booster-64",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "wildcardPolicy": "None"
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-32",
+                "labels": {
+                    "app": "vertx-http-booster-32"
+                },
+                "annotations": {
+                    "openshift.io/host.generated": "true"
+                }
+            },
+            "spec": {
+                "host": "",
+                "to": {
+                    "kind": "Service",
+                    "name": "vertx-http-booster-32",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "wildcardPolicy": "None"
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-64",
+                "annotations": {
+                    "openshift.io/host.generated": "true"
+                }
+            },
+            "spec": {
+                "host": "",
+                "to": {
+                    "kind": "Service",
+                    "name": "vertx-http-booster-64",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "wildcardPolicy": "None"
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-32",
+                "annotations": {
+                    "openshift.io/host.generated": "true"
+                }
+            },
+            "spec": {
+                "host": "",
+                "to": {
+                    "kind": "Service",
+                    "name": "wfswarm-rest-http-32",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "wildcardPolicy": "None"
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-64",
+                "annotations": {
+                    "openshift.io/host.generated": "true"
+                }
+            },
+            "spec": {
+                "host": "",
+                "to": {
+                    "kind": "Service",
+                    "name": "wfswarm-rest-http-64",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "wildcardPolicy": "None"
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-32",
+                "labels": {
+                    "app": "spring-boot-http-booster-32"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "spring-boot-http-booster-32",
+                    "deploymentconfig": "spring-boot-http-booster-32"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "spring-boot-http-booster-64",
+                "labels": {
+                    "app": "spring-boot-http-booster-64"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "spring-boot-http-booster-64",
+                    "deploymentconfig": "spring-boot-http-booster-64"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-32",
+                "labels": {
+                    "app": "vertx-http-booster-32"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "vertx-http-booster-32",
+                    "deploymentconfig": "vertx-http-booster-32"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "vertx-http-booster-64",
+                "labels": {
+                    "app": "vertx-http-booster-64"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "vertx-http-booster-64",
+                    "deploymentconfig": "vertx-http-booster-64"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-32",
+                "labels": {
+                    "app": "wfswarm-rest-http-32"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "wfswarm-rest-http-32",
+                    "deploymentconfig": "wfswarm-rest-http-32"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "wfswarm-rest-http-64",
+                "labels": {
+                    "app": "wfswarm-rest-http-64"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "app": "wfswarm-rest-http-64",
+                    "deploymentconfig": "wfswarm-rest-http-64"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "name": "OPENJDK8_32",
+            "displayName": "OpenJDK 8 32 bit image",
+            "description": "OpenJDK 8 32 bit image",
+            "required": true,
+            "value": "openjdk-8-32"
+        },
+        {
+            "name": "OPENJDK8_64",
+            "displayName": "OpenJDK 8 64 bit image",
+            "description": "OpenJDK 8 64 bit image",
+            "required": true,
+            "value": "openjdk-8-64"
+        },
+        {
+            "name": "MEMORY_LIMIT_MAX",
+            "displayName": "Memory Limit",
+            "description": "Maximum amount of memory a deployed container can use.",
+            "required": true,
+            "value": "200Mi"
+        },
+        {
+            "name": "MEMORY_LIMIT_MIN",
+            "displayName": "Requested Memory for a container",
+            "description": "Requested amount of memory a deployed container should get.",
+            "required": true,
+            "value": "160Mi"
+        },
+        {
+            "name": "JAVA_TOOL_OPTIONS",
+            "displayName": "The JVM arguments to pass to java",
+            "description": "Set this to the desired JVM flags to be added in the deployed containers.",
+            "value": "-XX:+UnlockDiagnosticVMOptions -XX:+PrintActiveCpus"
+        },
+        {
+            "name": "SECRET",
+            "displayName": "The push/pull secret for the images",
+            "description": "The push/pull secret for the images",
+            "generate": "expression",
+            "from": "builder-dockercfg-[a-z0-9]{5}",
+            "required": true
+        }
+    ]
+}
