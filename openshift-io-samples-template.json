@@ -724,10 +724,12 @@
                                 ],
                                 "resources": {
                                     "limits": {
-                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                        "memory": "${MEMORY_LIMIT_MAX}",
+                                        "cpu": "${CPU_LIMIT_MAX}"
                                     },
                                     "requests": {
-                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                        "memory": "${MEMORY_LIMIT_MIN}",
+                                        "cpu": "${CPU_LIMIT_MIN}"
                                     }
                                 },
                                 "imagePullPolicy": "Always"
@@ -814,10 +816,12 @@
                                 ],
                                 "resources": {
                                     "limits": {
-                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                        "memory": "${MEMORY_LIMIT_MAX}",
+                                        "cpu": "${CPU_LIMIT_MAX}"
                                     },
                                     "requests": {
-                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                        "memory": "${MEMORY_LIMIT_MIN}",
+                                        "cpu": "${CPU_LIMIT_MIN}"
                                     }
                                 },
                                 "imagePullPolicy": "Always"
@@ -904,10 +908,12 @@
                                 ],
                                 "resources": {
                                     "limits": {
-                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                        "memory": "${MEMORY_LIMIT_MAX}",
+                                        "cpu": "${CPU_LIMIT_MAX}"
                                     },
                                     "requests": {
-                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                        "memory": "${MEMORY_LIMIT_MIN}",
+                                        "cpu": "${CPU_LIMIT_MIN}"
                                     }
                                 },
                                 "imagePullPolicy": "Always"
@@ -994,10 +1000,12 @@
                                 ],
                                 "resources": {
                                     "limits": {
-                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                        "memory": "${MEMORY_LIMIT_MAX}",
+                                        "cpu": "${CPU_LIMIT_MAX}"
                                     },
                                     "requests": {
-                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                        "memory": "${MEMORY_LIMIT_MIN}",
+                                        "cpu": "${CPU_LIMIT_MIN}"
                                     }
                                 },
                                 "imagePullPolicy": "Always"
@@ -1084,10 +1092,12 @@
                                 ],
                                 "resources": {
                                     "limits": {
-                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                        "memory": "${MEMORY_LIMIT_MAX}",
+                                        "cpu": "${CPU_LIMIT_MAX}"
                                     },
                                     "requests": {
-                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                        "memory": "${MEMORY_LIMIT_MIN}",
+                                        "cpu": "${CPU_LIMIT_MIN}"
                                     }
                                 },
                                 "imagePullPolicy": "Always"
@@ -1174,10 +1184,12 @@
                                 ],
                                 "resources": {
                                     "limits": {
-                                        "memory": "${MEMORY_LIMIT_MAX}"
+                                        "memory": "${MEMORY_LIMIT_MAX}",
+                                        "cpu": "${CPU_LIMIT_MAX}"
                                     },
                                     "requests": {
-                                        "memory": "${MEMORY_LIMIT_MIN}"
+                                        "memory": "${MEMORY_LIMIT_MIN}",
+                                        "cpu": "${CPU_LIMIT_MIN}"
                                     }
                                 },
                                 "terminationMessagePath": "/dev/termination-log",
@@ -1520,6 +1532,20 @@
             "description": "Requested amount of memory a deployed container should get.",
             "required": true,
             "value": "160Mi"
+        },
+        {
+            "name": "CPU_LIMIT_MAX",
+            "displayName": "CPU Limit",
+            "description": "Maximum amount of CPU a deployed container can use.",
+            "required": true,
+            "value": "2"
+        },
+        {
+            "name": "CPU_LIMIT_MIN",
+            "displayName": "Requested CPU",
+            "description": "Requested amount of CPU a deployed container should get.",
+            "required": true,
+            "value": "100m"
         },
         {
             "name": "JAVA_TOOL_OPTIONS",
